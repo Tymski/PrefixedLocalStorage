@@ -1,1 +1,0 @@
-simple local storage abstraction with a prefix

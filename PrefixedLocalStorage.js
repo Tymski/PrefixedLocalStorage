@@ -3,6 +3,7 @@ class PrefixedLocalStorage {
         this.prefix = prefix;
         this.changed = false;
         this.all = new Map();
+        this.keys = [];
         this.setThisAll();
     }
 
@@ -25,27 +26,39 @@ class PrefixedLocalStorage {
         return this.all;
     }
 
-    clear(){
+    clear() {
         this.changed = true;
         for (var key in localStorage) {
             if (!key.startsWith(this.prefix)) continue;
             localStorage.removeItem(key);
-		}
+        }
     }
 
-    get length(){
+    get length() {
         if (this.changed == true) this.setThisAll();
         return this.all.size;
+    }
+
+    key(id) {
+        if (this.changed == true) this.setThisAll();
+        return keys[id];
+    }
+
+    getKeys() {
+        if (this.changed == true) this.setThisAll();
+        return this.keys;
     }
 
     setThisAll() {
         this.changed = false;
         this.all = new Map();
+        this.keys = [];
         for (var key in localStorage) {
             if (!key.startsWith(this.prefix)) continue;
             var k = key.slice(this.prefix.length);
             this.all.set(k, localStorage.getItem(key));
-		}
+            this.keys.push(k);
+        }
         return this.all;
     }
 }
