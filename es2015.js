@@ -36,6 +36,7 @@ function () {
   }, {
     key: "getItem",
     value: function getItem(key) {
+      if (this.changed == true) this.setThisAll();
       return localStorage.getItem(this.prefix + key);
     }
   }, {

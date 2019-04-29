@@ -18,6 +18,7 @@ class PrefixedLocalStorage {
     }
 
     getItem(key) {
+        if (this.changed == true) this.setThisAll();
         return localStorage.getItem(this.prefix + key);
     }
 
