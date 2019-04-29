@@ -41,7 +41,7 @@ class PrefixedLocalStorage {
 
     key(id) {
         if (this.changed == true) this.setThisAll();
-        return keys[id];
+        return this.keys[id];
     }
 
     getKeys() {
